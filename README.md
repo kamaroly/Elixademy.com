@@ -1,7 +1,8 @@
 # Ash Phoenix Application Starter Kit
 
-A starter Kit that helps you build what's unique to your application faster. A launchpad for building unique apps faster by focusing on what's unique rather than common features.
-Don't reinvent the wheel; dive in today to prototype, experiment, and scale Phoenix projects with confidence!
+A starter Kit that helps you build what's unique to your application faster. 
+
+Don't reinvent the wheel for common features. Clone it, rename it and start shipping with confidence today. Build for fast prototype and scaling in the future.
 
 ![Ash Phoenix Starter Kit](dashboard.png "Starter Kit Dashboard")
 
