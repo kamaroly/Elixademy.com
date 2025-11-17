@@ -71,6 +71,9 @@ jobs:
     - name: Compiles without warnings
       run: mix compile
 
+    - name: Force formatting for unformatted codes
+      run: mix format
+
     - name: Check Formatting
       run: mix format --check-formatted
 
