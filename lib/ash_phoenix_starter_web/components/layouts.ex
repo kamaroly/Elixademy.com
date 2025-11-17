@@ -71,7 +71,8 @@ defmodule AshPhoenixStarterWeb.Layouts do
 
     <!-- Main Content -->
         <main class="flex-1 p-2 bg-white overflow-auto">
-          <div class="card card-content">{render_slot(@inner_block)}</div>
+
+          <div class="card card-content bg-c">{render_slot(@inner_block)}</div>
           <.flash_group flash={@flash} />
         </main>
       </div>
@@ -100,9 +101,8 @@ defmodule AshPhoenixStarterWeb.Layouts do
           </div>
           <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
             <li>
-              <%!-- TODO: only show Back to My Account when impersonation is happening --%>
-              <a class="bg-warning text-warning-content" href={~p"/accounts/users/stop/impersonation"}>
-                <.icon name="hero-arrow-uturn-left-solid" />{gettext("Back to my Account")}
+              <a class="bg-warning text-warning-content" :if={AshPhoenixStarterWeb.Helpers.impersonated?(@current_user)} href={~p"/accounts/users/stop/impersonation"}>
+                <.icon name="hero-arrow-uturn-left-solid" />{gettext("Back to My Account")}
               </a>
             </li>
             <li><a><.icon name="hero-user-circle-solid" />{gettext("Profile")}</a></li>

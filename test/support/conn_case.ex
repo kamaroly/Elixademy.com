@@ -39,10 +39,10 @@ defmodule AshPhoenixStarterWeb.ConnCase do
 
   def login(conn, user) do
     case AshAuthentication.Jwt.token_for_user(user, %{}, domain: AshPhoenixStarter.Accounts) do
-      {:ok, token, _claims} ->
+      {:ok, _token, _claims} ->
         conn
         |> Phoenix.ConnTest.init_test_session(%{})
-        |> Plug.Conn.put_session(:user_token, token)
+        |> AshAuthentication.Plug.Helpers.store_in_session(user)
 
       {:error, reason} ->
         raise "Failed to generate token: #{inspect(reason)}"

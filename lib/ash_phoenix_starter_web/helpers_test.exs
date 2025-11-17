@@ -1,6 +1,7 @@
 defmodule AshPhoenixStarterWeb.HelpersTest do
   use ExUnit.Case, async: true
 
+  alias AshPhoenixStarterWeb.Helpers
   alias AshPhoenixStarter.Accounts.User
 
   @moduledoc """
@@ -20,17 +21,28 @@ defmodule AshPhoenixStarterWeb.HelpersTest do
 
     test "returns true if the user's email is in the super_users config" do
       user = %User{email: "super@example.com"}
-      assert AshPhoenixStarterWeb.Helpers.is_super_user?(user)
+      assert Helpers.is_super_user?(user)
     end
 
     test "returns false if the user's email is not in the super_users config" do
       user = %User{email: "regular@example.com"}
-      refute AshPhoenixStarterWeb.Helpers.is_super_user?(user)
+      refute Helpers.is_super_user?(user)
     end
 
     test "handles nil email gracefully" do
       user = %User{email: nil}
-      refute AshPhoenixStarterWeb.Helpers.is_super_user?(user)
+      refute Helpers.is_super_user?(user)
+    end
+  end
+
+  describe "impersonated?/1" do
+    test "confirms if user is impersonated or not" do
+      user = Map.put(%User{}, :impersonated?, true)
+      assert Helpers.impersonated?(user) == true
+    end
+
+    test "denies if users is not impersonated" do
+      refute Helpers.impersonated?(%User{})
     end
   end
 end
