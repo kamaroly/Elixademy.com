@@ -8,7 +8,6 @@ defmodule AshPhoenixStarterWeb.Accounts.Users.InviteUserLive do
         <.render_ash_form_errors form={@form} />
 
         <div class=" p-6 rounded-lg border border-gray-200">
-          <h2 class="text-2xl font-semibold text-gray-700 mb-4">Member Identification</h2>
           <div class="">
             <.input
               field={@form[:email]}
@@ -29,6 +28,7 @@ defmodule AshPhoenixStarterWeb.Accounts.Users.InviteUserLive do
 
   def mount(_params, _session, socket) do
     socket
+    |> assign(:after_submit_url, ~p"/accounts/users")
     |> assign_invite_form()
     |> ok()
   end

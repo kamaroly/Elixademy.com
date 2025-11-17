@@ -19,5 +19,10 @@ defmodule AshPhoenixStarter.Accounts.User.Relationships do
       source_attribute_on_join_resource :user_id
       destination_attribute_on_join_resource :group_id
     end
+
+    has_many :impersonations, AshPhoenixStarter.Accounts.UserImpersonation do
+      filter expr(status == :active)
+      description "Active impersonation for this user"
+    end
   end
 end

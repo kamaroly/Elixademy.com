@@ -10,9 +10,10 @@ defmodule AshPhoenixStarter.Accounts.UserImpersonation.Actions.StopImpersonation
       |> Ash.bulk_update(
         :update,
         _params = %{status: :ended, ended_at: DateTime.utc_now()},
-        authorize?: false
+        authorize?: false,
+        return_records?: true
       )
 
-    {:ok, :ok}
+    {:ok, List.first(records)}
   end
 end

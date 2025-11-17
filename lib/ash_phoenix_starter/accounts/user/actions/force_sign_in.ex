@@ -1,6 +1,7 @@
 defmodule AshPhoenixStarter.Accounts.User.Actions.ForceSignIn do
   use Ash.Resource.Actions.Implementation
   alias AshPhoenixStarter.Accounts.User
+  alias AshAuthentication.Plug.Helpers
   alias AshAuthentication.Jwt
 
   def run(inputs, _opts, _context) do
@@ -13,11 +14,6 @@ defmodule AshPhoenixStarter.Accounts.User.Actions.ForceSignIn do
     {:ok, token, _claims} = Jwt.token_for_user(user, %{"purpose" => purpose})
     to_sign_in_user = Ash.Resource.put_metadata(user, :token, token)
 
-    conn =
-      conn
-      |> AshAuthentication.Plug.Helpers.store_in_session(to_sign_in_user)
-      |> Plug.Conn.assign(:current_user, to_sign_in_user)
-
-    {:ok, conn}
+    {:ok, Helpers.store_in_session(conn, to_sign_in_user)}
   end
 end

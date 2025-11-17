@@ -21,9 +21,16 @@ defmodule AshPhoenixStarterWeb.LiveUserAuth do
     end
   end
 
-  def on_mount(:live_user_required, _params, _session, socket) do
+  def on_mount(:live_user_required, _params, session, socket) do
     if socket.assigns[:current_user] do
-      {:cont, socket}
+      # Indicate if the current session is impersonating a user
+      impersonator_user_id = Map.get(session, "impersonator_user_id", false)
+
+      current_user =
+        socket.assigns[:current_user]
+        |> Map.put(:impersonated?, is_binary(impersonator_user_id))
+
+      {:cont, assign(socket, :current_user, current_user)}
     else
       {:halt, Phoenix.LiveView.redirect(socket, to: ~p"/sign-in")}
     end
