@@ -7,7 +7,7 @@
 # General application configuration
 import Config
 
-config :ex_cldr, default_backend: AshPhoenixStarter.Cldr
+config :ex_cldr, default_backend: Elixademy.Cldr
 config :cinder, default_theme: "modern"
 
 config :ash,
@@ -53,29 +53,29 @@ config :spark,
     "Ash.Domain": [section_order: [:resources, :policies, :authorization, :domain, :execution]]
   ]
 
-config :AshPhoenixStarter,
-  ecto_repos: [AshPhoenixStarter.Repo],
+config :Elixademy,
+  ecto_repos: [Elixademy.Repo],
   generators: [timestamp_type: :utc_datetime],
   ash_domains: [
-    AshPhoenixStarter.Ledger,
-    AshPhoenixStarter.Accounts
+    Elixademy.Ledger,
+    Elixademy.Accounts
   ]
 
 # Configure super admin users who are allowed to do
 # special actions such as impersonating other
 # users in the teams. Seeing all teams
 # and more...
-config :AshPhoenixStarter, super_users: ["kamaro@example.com"]
+config :Elixademy, super_users: ["kamaro@example.com"]
 
 # Configures the endpoint
-config :AshPhoenixStarter, AshPhoenixStarterWeb.Endpoint,
+config :Elixademy, ElixademyWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: AshPhoenixStarterWeb.ErrorHTML, json: AshPhoenixStarterWeb.ErrorJSON],
+    formats: [html: ElixademyWeb.ErrorHTML, json: ElixademyWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: AshPhoenixStarter.PubSub,
+  pubsub_server: Elixademy.PubSub,
   live_view: [signing_salt: "waEAzL0/"]
 
 # Configures the mailer
@@ -85,12 +85,12 @@ config :AshPhoenixStarter, AshPhoenixStarterWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :AshPhoenixStarter, AshPhoenixStarter.Mailer, adapter: Swoosh.Adapters.Local
+config :Elixademy, Elixademy.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.25.4",
-  AshPhoenixStarter: [
+  Elixademy: [
     args:
       ~w(js/app.js --bundle --target=es2022 --outdir=../priv/static/assets/js --external:/fonts/* --external:/images/* --alias:@=.),
     cd: Path.expand("../assets", __DIR__),
@@ -100,7 +100,7 @@ config :esbuild,
 # Configure tailwind (the version is required)
 config :tailwind,
   version: "4.1.7",
-  AshPhoenixStarter: [
+  Elixademy: [
     args: ~w(
       --input=assets/css/app.css
       --output=priv/static/assets/css/app.css
