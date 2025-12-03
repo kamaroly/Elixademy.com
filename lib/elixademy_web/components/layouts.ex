@@ -31,10 +31,10 @@ defmodule ElixademyWeb.Layouts do
 
   def app(assigns) do
     ~H"""
-    <div class="flex flex-col h-screen bg-gray-100">
+    <div class="flex flex-col h-screen">
       <!-- Top Navigation -->
       <.top_nav current_user={@current_user} />
-
+      
     <!-- Main Content with Left Menu -->
       <div class="flex flex-1 overflow-hidden">
         <!-- Left Menu -->
@@ -68,10 +68,9 @@ defmodule ElixademyWeb.Layouts do
             <.left_nav menu={ElixademyWeb.Menu.left_menu(@current_user)} uri={@uri} />
           </nav>
         </aside>
-
+        
     <!-- Main Content -->
         <main class="flex-1 p-2 bg-white overflow-auto">
-
           <div class="card card-content bg-c">{render_slot(@inner_block)}</div>
           <.flash_group flash={@flash} />
         </main>
@@ -84,7 +83,7 @@ defmodule ElixademyWeb.Layouts do
     ~H"""
     <nav class="bg-white p-4 flex justify-between items-center border border-b border-gray-200 md:flex-row flex-col">
       <div
-        class="text-xl font-semibold mb-2 md:mb-0 hover:cursor-pointer text-primary bg-base-100 p-3 rounded-sm"
+        class="text-xl font-semibold mb-2 md:mb-0 hover:cursor-pointer text-primary p-3 rounded-sm"
         phx-click={JS.navigate(~p"/")}
       >
         {app_name(@current_user)}
@@ -101,7 +100,11 @@ defmodule ElixademyWeb.Layouts do
           </div>
           <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
             <li>
-              <a class="bg-warning text-warning-content" :if={ElixademyWeb.Helpers.impersonated?(@current_user)} href={~p"/accounts/users/stop/impersonation"}>
+              <a
+                :if={ElixademyWeb.Helpers.impersonated?(@current_user)}
+                class="bg-warning text-warning-content"
+                href={~p"/accounts/users/stop/impersonation"}
+              >
                 <.icon name="hero-arrow-uturn-left-solid" />{gettext("Back to My Account")}
               </a>
             </li>

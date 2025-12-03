@@ -6,7 +6,7 @@ config :Elixademy, Elixademy.Repo,
   username: "postgres",
   password: "ikijumba",
   hostname: "localhost",
-  database: "Elixademy_dev",
+  database: "elixademy_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
