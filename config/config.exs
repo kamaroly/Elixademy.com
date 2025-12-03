@@ -58,6 +58,7 @@ config :Elixademy,
   generators: [timestamp_type: :utc_datetime],
   ash_domains: [
     Elixademy.Ledger,
+    Elixademy.Courses,
     Elixademy.Accounts
   ]
 
