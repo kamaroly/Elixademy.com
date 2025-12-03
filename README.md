@@ -1,6 +1,6 @@
 # Elixademy – The Laracasts for the Elixir Community
 
-![Unit Tests](https://github.com/kamaroly/elixademy/actions/workflows/elixir.yaml/badge.svg)
+![Unit Tests](https://github.com/kamaroly/Elixademy.com/actions/workflows/elixir.yaml/badge.svg)
 
 **Elixademy** is a comprehensive video and written learning platform built exclusively for the Elixir, Phoenix, and Ash communities — think **Laracasts, but made by and for Elixir developers**.
 
